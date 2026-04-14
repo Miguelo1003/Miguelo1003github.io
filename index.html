@@ -3,32 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Proyecto en GitHub</title>
+    <title>Las Cartas de un Extraño</title>
     <style>
+        :root {
+            --rojo-oscuro: #8b0000;
+            --rojo-pasion: #d70000;
+            --blanco-suave: #f4f4f4;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #4a0000 0%, #8b0000 100%);
+            color: white;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 100vh;
+            justify-content: center;
+            min-height: 100vh;
             margin: 0;
-            background-color: #f0f2f5;
-        }
-        .container {
             text-align: center;
-            padding: 2rem;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        h1 { color: #333; }
-        p { color: #666; }
+
+        h1 {
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .grid-cartas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 90%;
+            max-width: 800px;
+        }
+
+        .opcion {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .opcion:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #ff4d4d;
+            box-shadow: 0 8px 25px rgba(255, 77, 77, 0.4);
+        }
+
+        /* Colores específicos para cada botón */
+        .btn-graduacion { border-bottom: 5px solid #ffd700; } /* Dorado */
+        .btn-mal { border-bottom: 5px solid #3498db; }        /* Azul */
+        .btn-cumple { border-bottom: 5px solid #e91e63; }      /* Rosa/Rojo */
+        .btn-sola { border-bottom: 5px solid #9b59b6; }        /* Morado */
+
+        p.instruccion {
+            margin-top: 2rem;
+            font-style: italic;
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Bienvenida a tus cartas Danna</h1>
-        <p>:¿Como Te Sientes?</p>
+
+    <h1>Para esos momentos especiales...</h1>
+    
+    <div class="grid-cartas">
+        <a href="#" class="opcion btn-graduacion" onclick="alert('Aquí irá tu mensaje de Graduación')">
+            🎓 1. Para tu graduación
+        </a>
+        
+        <a href="#" class="opcion btn-mal" onclick="alert('Aquí irá tu mensaje para cuando se sienta mal')">
+            💙 2. Cuando te sientas mal
+        </a>
+        
+        <a href="#" class="opcion btn-cumple" onclick="alert('Aquí irá tu mensaje de Feliz Cumpleaños')">
+            🎂 3. Feliz Cumpleaños
+        </a>
+        
+        <a href="#" class="opcion btn-sola" onclick="alert('Aquí irá tu mensaje para cuando se sienta sola')">
+            🌙 4. Cuando te sientas sola
+        </a>
     </div>
+
+    <p class="instruccion">Haz clic en la carta que necesites hoy.</p>
+
 </body>
 </html>
