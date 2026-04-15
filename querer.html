@@ -5,112 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Ti con Todo Mi Amor</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body, html {
             height: 100%;
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            /* Usamos la fuente serif 'Georgia' para un toque más clásico de carta */
             font-family: 'Georgia', 'Times New Roman', Times, serif;
+            /* Fondo de seguridad por si la imagen tarda en cargar */
+            background-color: #ede0d4; 
         }
 
-        /* CAPA 1: EL FONDO COMPLETO */
+        /* CAPA 1: FONDO QUE OCUPA TODA LA PANTALLA */
         .fondo-mágico {
-            /* Asegúrate de que el nombre de archivo coincida con tu imagen subida */
-            background-image: url('fondo_querer.png'); 
-            background-size: contain; /* Muestra la imagen COMPLETA, sin recortar nada */
-            background-position: center;
+            background-image: url('fondo-querer.jpg'); 
+            /* 'cover' asegura que la imagen llene toda la pantalla sin dejar espacios en blanco */
+            background-size: cover; 
+            background-position: center center;
             background-repeat: no-repeat;
+            background-attachment: fixed; /* Mantiene el fondo quieto al hacer scroll */
             
-            /* Esta capa ocupa todo el espacio */
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1; /* Fondo detrás */
+            width: 100vw;
+            height: 100vh;
+            z-index: -1; /* Enviado totalmente al fondo */
         }
 
-        /* CAPA 2: EL TEXTO COMBINADO (SIN CAJA) */
+        /* CAPA 2: CONTENEDOR DE TEXTO */
         .contenedor-carta {
-            /* Eliminamos la caja opaca. El fondo es totalmente transparente */
-            background-color: transparent; 
-            
-            /* Ajustamos la posición para que el texto caiga en el centro del papel */
-            z-index: 10; /* Texto delante */
-            position: relative;
-            max-width: 650px; /* Un poco más ancho para que respire */
-            padding: 20px;
-            
-            /* Centrado de texto */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            min-height: 100vh; /* Centrado vertical en toda la pantalla */
+            padding: 40px 20px;
             text-align: center;
-            
-            /* Un poco de padding superior e inferior para evitar que toque los bordes del arte */
-            padding-top: 5vh;
-            padding-bottom: 5vh;
+            z-index: 10;
         }
 
-        /* ESTILOS DE TEXTO PARA COMBINAR (TEXT-SHADOW MÁGICO) */
+        /* CUADRO INVISIBLE PARA LIMITAR EL TEXTO AL CENTRO (Donde están las líneas) */
+        .contenido-texto {
+            max-width: 500px;
+            /* Agregamos un fondo muy sutil para que las letras se lean bien sobre los dibujos */
+            background-color: rgba(255, 255, 255, 0.2); 
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(2px); /* Un ligero desenfoque para dar elegancia */
+        }
+
         h1 {
-            color: #ffffff; /* Texto blanco */
-            margin-bottom: 2rem;
-            font-size: 3rem; /* Título grande y elegante */
-            text-transform: capitalize; /* Convierte 'cuánto te quiero' a 'Cuánto Te Quiero' */
-            
-            /* ESTO HACE LA MAGIA: Múltiples sombras oscuras para crear un "borde" y leer sobre fondo claro */
-            text-shadow: 
-                -1px -1px 0 #4a0000,  
-                 1px -1px 0 #4a0000,
-                -1px  1px 0 #4a0000,
-                 1px  1px 0 #4a0000,
-                 2px 2px 8px rgba(0,0,0,0.8); /* Sombra suave para profundidad */
+            color: #4a2c2a;
+            margin-bottom: 20px;
+            font-size: 2.8rem;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.6);
         }
 
         p {
-            color: #ffffff; /* Texto blanco */
-            font-size: 1.35rem; /* Letra un poco más grande y legible */
-            line-height: 1.9; /* Mucho espacio entre líneas para una lectura cómoda */
-            margin-bottom: 30px;
-            
-            /* El mismo truco de text-shadow, pero un poco más sutil */
-            text-shadow: 
-                -0.5px -0.5px 0 #4a0000,  
-                 0.5px -0.5px 0 #4a0000,
-                -0.5px  0.5px 0 #4a0000,
-                 0.5px  0.5px 0 #4a0000,
-                 1px 1px 5px rgba(0,0,0,0.7);
+            color: #2b1d1a;
+            font-size: 1.25rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-style: italic;
         }
 
-        /* BOTÓN VOLVER (Transparente para combinar) */
         .boton-volver {
             display: inline-block;
-            margin-top: 2rem;
             text-decoration: none;
             color: #ffffff;
             font-weight: bold;
-            
-            /* Fondo rojo oscuro semitransparente para el botón */
-            background-color: rgba(139, 0, 0, 0.7); 
-            padding: 15px 30px;
-            border-radius: 30px;
-            
-            /* Borde sutil y sombra de texto para combinar */
-            border: 1px solid rgba(255,255,255,0.4);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-            
+            background-color: rgba(139, 0, 0, 0.85); 
+            padding: 12px 30px;
+            border-radius: 50px;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .boton-volver:hover {
-            background-color: rgba(215, 0, 0, 0.9); /* Rojo más vivo al pasar el mouse */
-            transform: scale(1.05); /* Efecto de "pulso" suave */
+            background-color: #b30000;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Ajustes para móviles */
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            p { font-size: 1.1rem; }
+            .contenido-texto { padding: 15px; }
         }
     </style>
 </head>
@@ -119,15 +103,21 @@
     <div class="fondo-mágico"></div>
 
     <div class="contenedor-carta">
-        <h1>Cuánto Te Quiero</h1>
-        
-        <p>
-            En cada una de estas mariposas revoloteando en la imagen, hay un pensamiento mío para ti. En el caballo noble que cuida la rosa, veo tu fuerza y tu delicadeza. Y en ese faro que ilumina la noche, veo cómo guías mi camino con tu luz.
-            Eres mi compañera de aventuras, mi confidente, mi inspiración. Cada día que paso contigo es un regalo, un capítulo más en este libro maravilloso que estamos escribiendo juntos.
-            Quiero que sepas que eres la persona más especial de mi vida, que te admiro por tu valentía y que me encanta cómo sonríes. Y sobre todo, quiero que recuerdes siempre, incluso en los días más grises, que... ¡Te quiero muchísimo!
-        </p>
-        
-        <a href="index.html" class="boton-volver">← Volver</a>
+        <div class="contenido-texto">
+            <h1>Cuánto Te Quiero</h1>
+            
+            <p>
+                En cada una de estas mariposas revoloteando en la imagen, hay un pensamiento mío para ti. En el caballo noble que cuida la rosa, veo tu fuerza y tu delicadeza. Y en ese faro que ilumina la noche, veo cómo guías mi camino con tu luz.
+                <br><br>
+                Eres mi compañera de aventuras, mi confidente, mi inspiración. Cada día que paso contigo es un regalo, un capítulo más en este libro maravilloso que estamos escribiendo juntos.
+                <br><br>
+                Quiero que sepas que eres la persona más especial de mi vida, que te admiro por tu valentía y que me encanta cómo sonríes.
+                <br><br>
+                <strong>¡Te quiero muchísimo!</strong>
+            </p>
+            
+            <a href="index.html" class="boton-volver">← Volver</a>
+        </div>
     </div>
 
 </body>
