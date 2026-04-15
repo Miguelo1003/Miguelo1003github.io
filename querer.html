@@ -3,56 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Ti</title>
+    <title>Para Ti con Todo Mi Amor</title>
     <style>
         body {
-            font-family: 'Georgia', serif;
-            background-color: #fdf6f0; /* Color papel antiguo */
-            color: #4a0000;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente moderna y legible */
+            background-image: url('{{ TU_URL_DE_LA_IMAGEN_AQUÍ }}'); /* ¡REEMPLAZA ESTO! */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #ffffff; /* Texto blanco para contraste */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
             margin: 0;
-            padding: 40px;
+            padding: 20px;
         }
-        .sobre {
-            background: white;
-            padding: 50px;
-            border-radius: 5px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+
+        .contenedor-carta {
+            background-color: rgba(74, 0, 0, 0.7); /* Fondo rojo oscuro semitransparente */
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Sombra para profundidad */
             max-width: 600px;
             line-height: 1.8;
-            border-left: 10px solid #8b0000;
-            position: relative;
+            border: 2px solid rgba(255,255,255,0.2); /* Borde sutil */
+            text-align: center; /* Centrar todo el texto */
         }
+
+        h1 {
+            color: #ffcccc; /* Título rosado suave */
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
         .boton-volver {
+            display: inline-block;
             margin-top: 30px;
             text-decoration: none;
-            color: #8b0000;
+            color: #ffffff;
             font-weight: bold;
-            border: 1px solid #8b0000;
-            padding: 10px 20px;
-            border-radius: 20px;
-            transition: 0.3s;
+            background-color: #8b0000; /* Botón rojo oscuro */
+            padding: 12px 24px;
+            border-radius: 25px;
+            transition: background-color 0.3s ease;
         }
+
         .boton-volver:hover {
-            background: #8b0000;
-            color: white;
+            background-color: #d70000; /* Botón rojo pasión al pasar el mouse */
         }
     </style>
 </head>
 <body>
 
-    <div class="sobre">
-        <h2>Mi mensaje para ti...</h2>
+    <div class="contenedor-carta">
+        <h1>Cuánto Te Quiero</h1>
+        
         <p>
-            Escribe aquí todo lo que quieras decirle. Este espacio es solo para ella.
+            En cada una de estas mariposas revoloteando en la imagen, hay un pensamiento mío para ti. En el caballo noble que cuida la rosa, veo tu fuerza y tu delicadeza. Y en ese faro que ilumina la noche, veo cómo guías mi camino con tu luz.
+            Eres mi compañera de aventuras, mi confidente, mi inspiración. Cada día que paso contigo es un regalo, un capítulo más en este libro maravilloso que estamos escribiendo juntos.
+            Quiero que sepas que eres la persona más especial de mi vida, que te admiro por tu valentía y que me encanta cómo sonríes. Y sobre todo, quiero que recuerdes siempre, incluso en los días más grises, que... ¡Te quiero muchísimo!
         </p>
     </div>
 
-    <a href="index.html" class="boton-volver">← Volver a las cartas</a>
+    <a href="index.html" class="boton-volver">← Volver</a>
 
 </body>
 </html>
