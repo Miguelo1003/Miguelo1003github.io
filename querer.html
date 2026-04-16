@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Ti con Todo Mi Amor</title>
+    <title>Para Ti</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Special+Elite&display=swap" rel="stylesheet">
+    
     <style>
         * {
             box-sizing: border-box;
@@ -13,112 +15,113 @@
             height: 100%;
             margin: 0;
             padding: 0;
-            font-family: 'Georgia', 'Times New Roman', Times, serif;
-            /* Fondo de seguridad por si la imagen tarda en cargar */
+            font-family: 'Dancing Script', cursive;
+            
+            background-image: url('fondo-querer.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             background-color: #ede0d4; 
         }
 
-        /* CAPA 1: FONDO QUE OCUPA TODA LA PANTALLA */
-        .fondo-mágico {
-            background-image: url('fondo-querer.jpg'); 
-            /* 'cover' asegura que la imagen llene toda la pantalla sin dejar espacios en blanco */
-            background-size: cover; 
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-attachment: fixed; /* Mantiene el fondo quieto al hacer scroll */
-            
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1; /* Enviado totalmente al fondo */
-        }
-
-        /* CAPA 2: CONTENEDOR DE TEXTO */
         .contenedor-carta {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh; /* Centrado vertical en toda la pantalla */
+            min-height: 100vh;
             padding: 40px 20px;
             text-align: center;
-            z-index: 10;
         }
 
-        /* CUADRO INVISIBLE PARA LIMITAR EL TEXTO AL CENTRO (Donde están las líneas) */
         .contenido-texto {
-            max-width: 500px;
-            /* Agregamos un fondo muy sutil para que las letras se lean bien sobre los dibujos */
-            background-color: rgba(255, 255, 255, 0.2); 
-            padding: 30px;
-            border-radius: 15px;
-            backdrop-filter: blur(2px); /* Un ligero desenfoque para dar elegancia */
+            max-width: 580px;
+            background-color: transparent; /* Eliminado el fondo y el desenfoque */
+            padding: 20px;
+            margin-top: 20px;
         }
 
         h1 {
-            color: #4a2c2a;
-            margin-bottom: 20px;
-            font-size: 2.8rem;
-            text-shadow: 2px 2px 4px rgba(255,255,255,0.6);
+            color: #3d2624;
+            margin-bottom: 25px;
+            font-size: 3.2rem;
+            /* Sombra blanca para resaltar sobre el fondo nítido */
+            text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;
         }
 
         p {
-            color: #2b1d1a;
-            font-size: 1.25rem;
-            line-height: 1.8;
-            margin-bottom: 25px;
-            font-style: italic;
+            color: #1a0f0d;
+            font-size: 1.55rem;
+            line-height: 1.45;
+            margin-bottom: 30px;
+            font-weight: 700;
+            /* Contorno blanco reforzado para legibilidad máxima sin fondo */
+            text-shadow: 1.5px 1.5px 0 #fff, -1.5px -1.5px 0 #fff, 1.5px -1.5px 0 #fff, -1.5px 1.5px 0 #fff, 0 0 10px #fff;
+        }
+
+        .contacto {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 5px 15px;
+            font-family: 'Special Elite', serif;
+            color: #8b0000;
+            font-size: 1.3rem;
+            /* Resaltado suave para el @ */
+            text-shadow: 1px 1px 0 #fff;
         }
 
         .boton-volver {
             display: inline-block;
             text-decoration: none;
-            color: #ffffff;
+            font-family: sans-serif;
+            color: #ffffff !important;
             font-weight: bold;
-            background-color: rgba(139, 0, 0, 0.85); 
-            padding: 12px 30px;
+            background-color: #8b0000; 
+            padding: 12px 35px;
             border-radius: 50px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            font-size: 0.9rem;
         }
 
         .boton-volver:hover {
             background-color: #b30000;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            transform: scale(1.05);
         }
 
-        /* Ajustes para móviles */
         @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
-            p { font-size: 1.1rem; }
-            .contenido-texto { padding: 15px; }
+            .contenido-texto { max-width: 100%; padding: 10px; }
+            h1 { font-size: 2.5rem; }
+            p { font-size: 1.35rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="fondo-mágico"></div>
-
     <div class="contenedor-carta">
         <div class="contenido-texto">
-            <h1>Cuánto Te Quiero</h1>
+            <h1>Para Ti</h1>
             
             <p>
-                En cada una de estas mariposas revoloteando en la imagen, hay un pensamiento mío para ti. En el caballo noble que cuida la rosa, veo tu fuerza y tu delicadeza. Y en ese faro que ilumina la noche, veo cómo guías mi camino con tu luz.
+                Okey no sé cómo comenzar, pero si estás leyendo esto es porque quieres saber que hay una persona que pase lo que pase siempre te va a tener un cariño impresionante. No solo por lo gran persona que fuiste con él, sino por todos los momentos de felicidad y todos los secretos. Recuerda que se sabe tantas cosas sobre ti que te sorprenderías.
                 <br><br>
-                Eres mi compañera de aventuras, mi confidente, mi inspiración. Cada día que paso contigo es un regalo, un capítulo más en este libro maravilloso que estamos escribiendo juntos.
+                Como puedes ver reflejado en el fondo, hay detalles sobre algunas cosas que pase lo que pase siempre se va a preguntar cada mañana: cómo amaneciste, si estás comiendo bien, cómo te sientes en este último año escolar... 
                 <br><br>
-                Quiero que sepas que eres la persona más especial de mi vida, que te admiro por tu valentía y que me encanta cómo sonríes.
+                Él sabe que aunque ni siquiera hablen, va a estar siempre dispuesto a escucharte una y otra vez, a estar a tu lado; pero esta vez expresado en manera de carta, la cual dice que siempre tendrás un hueco en mi corazón. Y no lo digo de manera romántica, simplemente me di cuenta que sería divertido verte hacer drama una vez más, reírme de eso, escribir mal una palabra para que tengas que corregirme o simplemente charlar un día súper normal y ese <strong>"dahhhh"</strong> que se me pegó de una manera significativa. 
                 <br><br>
-                <strong>¡Te quiero muchísimo!</strong>
+                Eras muy cercana a mí y siempre lo has sido. Solo espero que si tienes un problema, así no sepas quién soy, solo envíes un mensaje a este usuario: 
+                <br>
+                <span class="contacto">@xxxxxxxxx</span>
+                <br><br>
+                Te responderé, te diré que te quiero y que quiero que todo te salga muy bien en tu vida. Gracias por dejarme escuchar una vez más todo lo que eres tú.
             </p>
             
             <a href="index.html" class="boton-volver">← Volver</a>
         </div>
     </div>
 
+</body>
+</html>
 </body>
 </html>
