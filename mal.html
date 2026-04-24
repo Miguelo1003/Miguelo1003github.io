@@ -3,56 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Ti</title>
+    <title>Para mi poderosa Covey</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Georgia', serif;
-            background-color: #fdf6f0; /* Color papel antiguo */
-            color: #4a0000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
+        * {
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
             margin: 0;
-            padding: 40px;
+            padding: 0;
+            background-image: url('fondo-mal.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
         }
-        .sobre {
-            background: white;
-            padding: 50px;
-            border-radius: 5px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            max-width: 600px;
-            line-height: 1.8;
-            border-left: 10px solid #8b0000;
-            position: relative;
+
+        /* Degradado lateral para suavizar la zona de lectura sin tapar la imagen */
+        .contenedor-lectura {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, 
+                rgba(255,255,255,0.7) 0%, 
+                rgba(255,255,255,0.3) 45%, 
+                transparent 100%);
+            display: flex;
+            align-items: center;
+            padding-left: 4%;
         }
+
+        .texto-carta {
+            max-width: 520px;
+            font-family: 'Caveat', cursive;
+            color: #1a0633; 
+            /* Borde blanco sólido para que la letra resalte en cualquier parte del fondo */
+            text-shadow: 
+                2px 2px 0px #fff, 
+               -2px -2px 0px #fff, 
+                2px -2px 0px #fff, 
+               -2px  2px 0px #fff,
+                0px  0px 12px rgba(255,255,255,1);
+        }
+
+        h2 {
+            font-size: 3.2rem;
+            margin: 0 0 10px 0;
+            color: #311b92;
+            line-height: 1;
+        }
+
+        .mensaje-principal {
+            font-size: 1.55rem;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        p {
+            margin-bottom: 12px;
+        }
+
+        .resaltado {
+            color: #512da8;
+            font-weight: 700;
+        }
+
         .boton-volver {
-            margin-top: 30px;
+            margin-top: 10px;
             text-decoration: none;
-            color: #8b0000;
-            font-weight: bold;
-            border: 1px solid #8b0000;
-            padding: 10px 20px;
-            border-radius: 20px;
-            transition: 0.3s;
-        }
-        .boton-volver:hover {
-            background: #8b0000;
             color: white;
+            font-family: sans-serif;
+            font-weight: bold;
+            font-size: 0.8rem;
+            background: #311b92;
+            padding: 10px 25px;
+            border-radius: 50px;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            text-shadow: none;
+        }
+
+        .boton-volver:hover {
+            background: #512da8;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .contenedor-lectura {
+                padding-left: 15px;
+                background: rgba(255,255,255,0.8);
+            }
+            .texto-carta { max-width: 100%; padding-right: 15px; }
+            h2 { font-size: 2.5rem; }
+            .mensaje-principal { font-size: 1.3rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="sobre">
-        <h2>Mi mensaje para ti...</h2>
-        <p>
-            Escribe aquí todo lo que quieras decirle. Este espacio es solo para ella.
-        </p>
+    <div class="contenedor-lectura">
+        <div class="texto-carta">
+            <h2>Hola, te escucho.</h2>
+            <div class="mensaje-principal">
+                <p>¿Qué pasó esta vez? ¿Quieres comer esas gomitas de tirita? Dime por qué ahora no te sientes como la mujer más poderosa del mundo.</p>
+                
+                <p>Te estás volviendo a preocupar demasiado, ¿cierto? Recuerda que hay muchas cosas que no puedes controlar; sientes que todo es tu culpa, pero no es así. Cada vez que piensas que no eres lo suficientemente fuerte, demuestras que tienes una <span class="resaltado">convicción indomable</span>.</p>
+                
+                <p>Cuando actúas, cambias esa actitud tímida por una postura de confianza y determinación; te has convertido en la mejor versión de ti misma. Esa chica de 1.60 que es tan imponente que parece de 1.80, con una sonrisa que motiva a cualquiera a seguir adelante.</p>
+                
+                <p>¿O el problema es que te están presionando otra vez tus papás? Recuerda que estás dando lo mejor de ti. Sé que quieres que todo salga perfecto, pero también <span class="resaltado">mereces descansar</span>, ver una peli o tomar una siesta. No importa si te trasnochas o si dejas de comer por querer dejar todo hecho; eso no está bien. Tienes que recuperarte, dormir y disfrutar. Esas pequeñas cosas son las que hacen que la vida sea linda.</p>
+                
+                <p>Espero que esto te dé fuerzas para no rendirte y simplemente digas: <span class="resaltado">'Yo puedo'</span>. Porque tú puedes con todo. Y recuerda: cuando sientas que no puedes más, aquí voy a estar para darte ánimos, <span class="resaltado">Covey</span>.</p>
+            </div>
+            <a href="index.html" class="boton-volver">VOLVER ←</a>
+        </div>
     </div>
-
-    <a href="index.html" class="boton-volver">← Volver a las cartas</a>
 
 </body>
 </html>
