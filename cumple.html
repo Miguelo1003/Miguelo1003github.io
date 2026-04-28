@@ -3,56 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Ti</title>
+    <title>Para Danna</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Georgia', serif;
-            background-color: #fdf6f0; /* Color papel antiguo */
-            color: #4a0000;
+        * { box-sizing: border-box; }
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-image: url('fondo_mesa_playa.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            /* Fin de sección modificada */
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 40px;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+            flex-direction: column;
         }
-        .sobre {
-            background: white;
-            padding: 50px;
-            border-radius: 5px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            max-width: 600px;
-            line-height: 1.8;
-            border-left: 10px solid #8b0000;
+
+        .titulo-superior {
+            font-size: 2.5rem;
+            color: #6a1b9a;
+            margin-bottom: 30px;
+            text-align: center;
+            animation: flotar 3s ease-in-out infinite;
+        }
+
+        @keyframes flotar {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .contenedor-regalo {
             position: relative;
+            width: 280px;
+            height: 280px;
+            cursor: pointer;
+            perspective: 1200px;
+            z-index: 20;
         }
-        .boton-volver {
-            margin-top: 30px;
-            text-decoration: none;
-            color: #8b0000;
-            font-weight: bold;
-            border: 1px solid #8b0000;
-            padding: 10px 20px;
-            border-radius: 20px;
-            transition: 0.3s;
+
+        .caja-regalo {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 200px;
+            background-color: #ff0000; 
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            background-image: linear-gradient(135deg, #cc0000 25%, transparent 25%), 
+                               linear-gradient(225deg, #cc0000 25%, transparent 25%), 
+                               linear-gradient(45deg, #cc0000 25%, transparent 25%), 
+                               linear-gradient(315deg, #cc0000 25%, #ff0000 25%);
+            background-position: 10px 0, 10px 0, 0 0, 0 0;
+            background-size: 20px 20px;
         }
-        .boton-volver:hover {
-            background: #8b0000;
+
+        .tapa-regalo {
+            position: absolute;
+            top: 35px;
+            left: -10px;
+            width: 300px;
+            height: 50px;
+            background-color: #ff3333; 
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 30;
+            transform-origin: top;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mono {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            background-color: #3e2723; 
+            border-radius: 50% 50% 0 0;
+        }
+        .mono::after, .mono::before {
+            content: "";
+            position: absolute;
+            width: 65px; height: 35px;
+            background-color: #3e2723;
+            border-radius: 50%;
+        }
+        .mono::before { left: -45px; top: 10px; transform: rotate(-35deg); }
+        .mono::after { right: -45px; top: 10px; transform: rotate(35deg); }
+
+        .etiqueta {
+            position: absolute;
+            top: 100px;
+            left: 10px;
+            background-color: #c09f6f; 
             color: white;
+            padding: 15px 10px;
+            width: 140px;
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: 2px dashed white;
+            box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+            transform: rotate(-15deg);
+            z-index: 35;
+            border-radius: 5px;
+        }
+
+        .carta {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 90%;
+            max-width: 480px;
+            z-index: 50;
+            opacity: 0;
+            font-family: 'Caveat', cursive;
+            color: #2c1810; 
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-height: 85vh;
+            overflow-y: auto;
+            background: radial-gradient(circle, #f2e8d5 0%, #e4d5b7 70%, #b89b72 100%);
+            border: 2px solid #8d6e63;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3), inset 0 0 50px rgba(139, 69, 19, 0.2);
+            padding: 50px 40px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        /* Título de la carta ajustado a negro y negrita */
+        .carta h2 {
+            font-size: 2.8rem;
+            margin: 0 0 15px 0;
+            color: #000000;
+            font-weight: 700;
+        }
+
+        .carta-texto {
+            font-size: 1.4rem;
+            line-height: 1.4;
+            text-align: left;
+        }
+
+        .capa-oscurecimiento {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0);
+            z-index: 40;
+            transition: background 0.8s;
+            pointer-events: none;
+        }
+
+        .contenedor-regalo:hover .tapa-regalo {
+            transform: rotateX(-110deg) translateY(-10px);
+        }
+
+        .contenedor-regalo:hover ~ .carta {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .contenedor-regalo:hover ~ .capa-oscurecimiento {
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        @media (max-width: 600px) {
+            .titulo-superior { font-size: 1.8rem; }
+            .carta { padding: 40px 25px; width: 95%; }
+            .carta-texto { font-size: 1.2rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="sobre">
-        <h2>Mi mensaje para ti...</h2>
-        <p>
-            Escribe aquí todo lo que quieras decirle. Este espacio es solo para ella.
-        </p>
+    <div class="titulo-superior">Para:</div>
+
+    <div class="contenedor-regalo">
+        <div class="etiqueta">
+            DANNA<br>VERONICA<br>CICERI<br>DUARTE
+        </div>
+        <div class="tapa-regalo">
+            <div class="mono"></div>
+        </div>
+        <div class="caja-regalo"></div>
     </div>
 
-    <a href="index.html" class="boton-volver">← Volver a las cartas</a>
+    <div class="capa-oscurecimiento"></div>
+    
+    <div class="carta">
+        <h2>¡Holaaaaa!</h2>
+        <div class="carta-texto">
+            <p>¿Cómo estás? ¡Feliz cumpleaños! ¿Qué se siente ya tener tus dulces 16? ¿Qué se siente saber que lograste sobrevivir a todo lo que ha pasado estos años?</p>
+            
+            <p>Al final creo que sí me acordé de tu cumpleaños y, pues, como regalo —por raro que se escuche— es esta carta que estás leyendo y la página web. ¿Qué buen regalo, no?</p>
+            
+            <p>Hay una carta que está bloqueada hasta tu graduación; espero de verdad que te sirva para cada momento de este año. Sé que no pude estar ahí para decirte: "Oye, feliz cumpleaños, ven te invito a algo de tomar en tu chiva rumbera".</p>
+            
+            <p>Espero que sí lo disfrutes; ojalá esté invitado a bailar toda la noche en esa chiva, pasar el día contigo y que lo goces, porque no hay cosa que más disfrutes que pasar tiempo de calidad con las personas.</p>
+            
+            <p>Y, pues, obviamente ojalá tengas esa lista de tus 16 deseos lista para que se cumplan ese día, la verdad. Nada, pues espero que disfrutes el día de hoy como nunca y que, ojalá, te llegue este mensaje.</p>
+        </div>
+    </div>
 
 </body>
 </html>
