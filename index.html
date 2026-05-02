@@ -6,75 +6,122 @@
     <title>Las Cartas de un Extraño</title>
     <style>
         :root {
-            --rojo-oscuro: #4a0000;
-            --rojo-brillante: #8b0000;
+            --insta-gradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, var(--rojo-oscuro) 0%, var(--rojo-brillante) 100%);
+            /* Usando tu imagen de fondo */
+            background-image: url('prueba.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            
             color: white;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             min-height: 100vh;
             margin: 0;
             padding: 20px;
             text-align: center;
+            box-sizing: border-box;
+        }
+
+        /* Capa muy sutil para no oscurecer demasiado los girasoles */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            z-index: 0;
+        }
+
+        h1, .grid-cartas, .instruccion, footer {
+            position: relative;
+            z-index: 1;
         }
 
         h1 {
-            margin-bottom: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 2.5rem;
             font-size: 2.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
         }
 
         .grid-cartas {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
             width: 100%;
-            max-width: 900px;
+            max-width: 1000px;
         }
 
         .opcion {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            /* Fondo más transparente (0.05) para que se vea el fondo */
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px); /* Menos desenfoque para ver mejor lo de atrás */
             border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 25px;
-            border-radius: 15px;
+            padding: 20px;
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
             color: white;
             font-weight: bold;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             display: flex;
             align-items: center;
             justify-content: center;
+            min-height: 60px;
         }
 
         .opcion:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
             box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
         }
 
-        /* Bordes de colores para diferenciar las cartas */
-        .btn-graduacion { border-bottom: 5px solid #ffd700; } 
-        .btn-mal { border-bottom: 5px solid #3498db; }        
-        .btn-cumple { border-bottom: 5px solid #e91e63; }      
-        .btn-sola { border-bottom: 5px solid #9b59b6; }       
-        .btn-disconforme { border-bottom: 5px solid #1abc9c; } 
-        .btn-querer { border-bottom: 5px solid #f1c40f; }      
+        /* Bordes de colores delgados */
+        .btn-graduacion { border-bottom: 3px solid #ffd700; } 
+        .btn-mal { border-bottom: 3px solid #3498db; }        
+        .btn-cumple { border-bottom: 3px solid #e91e63; }      
+        .btn-sola { border-bottom: 3px solid #9b59b6; }       
+        .btn-disconforme { border-bottom: 3px solid #1abc9c; } 
+        .btn-querer { border-bottom: 3px solid #f1c40f; }      
 
-        p.instruccion {
-            margin-top: 2.5rem;
+        .instruccion {
+            margin-top: 3rem;
+            font-size: 0.9rem;
             font-style: italic;
             opacity: 0.8;
-            max-width: 600px;
+        }
+
+        /* Footer al final de la página */
+        footer {
+            margin-top: auto; /* Empuja el footer al fondo */
+            padding: 40px 20px;
+        }
+
+        .insta-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--insta-gradient);
+            padding: 10px 20px;
+            border-radius: 30px;
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .insta-link:hover {
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -82,32 +129,23 @@
 
     <h1>Para esos momentos especiales</h1>
     
-<div class="grid-cartas">
-    <a href="graduacion.html" class="opcion btn-graduacion">
-        🎓 1. Para tu graduación
-    </a>
-    
-    <a href="mal.html" class="opcion btn-mal">
-        💙 2. Cuando te sientas mal
-    </a>
-    
-    <a href="cumple.html" class="opcion btn-cumple">
-        🎂 3. Feliz Cumpleaños
-    </a>
-    
-    <a href="sola.html" class="opcion btn-sola">
-        🌙 4. Cuando te sientas sola
-    </a>
+    <div class="grid-cartas">
+        <a href="graduacion.html" class="opcion btn-graduacion">🎓 1. Para tu graduación</a>
+        <a href="mal.html" class="opcion btn-mal">💙 2. Cuando te sientas mal</a>
+        <a href="cumple.html" class="opcion btn-cumple">🎂 3. Feliz Cumpleaños</a>
+        <a href="sola.html" class="opcion btn-sola">🌙 4. Cuando te sientas sola</a>
+        <a href="disconforme.html" class="opcion btn-disconforme">✨ 5. Cuando estés disconforme</a>
+        <a href="querer.html" class="opcion btn-querer">❤️ 6. Cuánto te quiero</a>
+    </div>
 
-    <a href="disconfrme.html" class="opcion btn-disconforme">
-        ✨ 5. Cuando estés disconforme con vos misma
-    </a>
+    <p class="instruccion">Haz clic en la carta que desees abrir.</p>
 
-    <a href="querer.html" class="opcion btn-querer">
-        ❤️ 6. Cuando necesites saber cuánto te quiero
-    </a>
-</div>
-    <p class="instruccion">Haz clic en la carta que tu corazón necesite leer hoy.</p>
+    <footer>
+        <p style="margin-bottom: 10px; font-size: 0.8rem; opacity: 0.7;">¿Quieres decirme algo?</p>
+        <a href="https://instagram.com/sofia_caro_5535" target="_blank" class="insta-link">
+            📸 Instagram
+        </a>
+    </footer>
 
 </body>
 </html>
