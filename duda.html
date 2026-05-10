@@ -3,56 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Ti</title>
+    <title>Cuando dudes de tu fuerza ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: 'Georgia', serif;
-            background-color: #fdf6f0; /* Color papel antiguo */
-            color: #4a0000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            background-color: #000;
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
             min-height: 100vh;
-            margin: 0;
-            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
         }
-        .sobre {
-            background: white;
-            padding: 50px;
-            border-radius: 5px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            max-width: 600px;
-            line-height: 1.8;
-            border-left: 10px solid #8b0000;
-            position: relative;
-        }
-        .boton-volver {
-            margin-top: 30px;
+
+        /* Botón Volver */
+        .btn-volver {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            z-index: 100;
             text-decoration: none;
-            color: #8b0000;
-            font-weight: bold;
-            border: 1px solid #8b0000;
-            padding: 10px 20px;
-            border-radius: 20px;
+            color: #fff;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
             transition: 0.3s;
+            opacity: 0.7;
         }
-        .boton-volver:hover {
-            background: #8b0000;
-            color: white;
+
+        .btn-volver:hover {
+            opacity: 1;
+            transform: translateX(-5px);
+            color: #22e6e3;
+        }
+
+        .btn-volver span {
+            font-size: 1.2rem;
+        }
+
+        /* Fondo Inmersivo */
+        .full-background {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('Fondo-Fuerza.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            transform: scale(1.1);
+        }
+
+        /* Contenedor Integrado */
+        .content-wrapper {
+            max-width: 800px;
+            width: 90%;
+            padding: 80px 20px;
+            text-align: center;
+            animation: slideUp 2s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            letter-spacing: 5px;
+            font-weight: 300;
+            margin-bottom: 50px;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        .texto-carta {
+            font-size: 1.1rem;
+            line-height: 2;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+        }
+
+        .highlight {
+            color: #22e6e3;
+            font-weight: 500;
+        }
+
+        /* Cita Estética */
+        .aesthetic-quote {
+            margin: 60px auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 2px;
+            border-left: 2px solid #09177f;
+            border-right: 2px solid #09177f;
+            position: relative;
+            max-width: 600px;
+        }
+
+        .quote-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            line-height: 1.6;
+            color: #22e6e3;
+            font-style: italic;
+        }
+
+        .firma {
+            margin-top: 40px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #fff;
+            opacity: 0.9;
+        }
+
+        .divider {
+            width: 50px;
+            height: 2px;
+            background: #09177f;
+            margin: 20px auto;
         }
     </style>
 </head>
 <body>
 
-    <div class="sobre">
-        <h2>Mi mensaje para ti...</h2>
-        <p>
-            Escribe aquí todo lo que quieras decirle. Este espacio es solo para ella.
-        </p>
-    </div>
+    <a href="index.html" class="btn-volver">
+        <span>←</span> Volver
+    </a>
 
-    <a href="index.html" class="boton-volver">← Volver a las cartas</a>
+    <div class="full-background"></div>
+
+    <div class="content-wrapper">
+        <h2>✨ Vamos a por todo</h2>
+        
+        <div class="texto-carta">
+            <p>Hola. Bueno, sé que probablemente si estás aquí es porque estás dudando un poco y es un día en el que todo cuesta un poquito más, ¿no?</p>
+            <br>
+            <p>Antes de cualquier cosa, miremos todo lo que has pasado para llegar a donde estás hoy. ¿Te acuerdas cuando decías que no ibas a salir de ese hueco? Te atormentaba haberte lesionado; decías que no volverías a ser la misma y te daba miedo no recuperar tu movilidad. Pero lo lograste superar. Sabes que pudiste hacerlo.</p>
+            <br>
+            <p>También recuerdo cuando te sentías mal porque te decían que habías cambiado, pero eso al final no importó, porque tú sabías que no era verdad.</p>
+            <br>
+            <p>Ahora, más que nunca, tienes que seguir luchando por este sueño de estudiar Ecología. Estás empezando, eres primípara y entiendo que el cambio de métodos es grande, pero no permitas que nadie diga que no puedes. Sabes que a cualquiera le puedes ganar si te lo propones.</p>
+            <br>
+            <p>Antes de compararte con alguien más, recuerda que tu única lucha es contra ti misma, y esa batalla se vive día a día. Desde que te conocí, supe que eres una guerrera; lo vi, lo viví y siempre lo sabré.</p>
+        </div>
+
+        <div class="aesthetic-quote">
+            <p class="quote-text">"Y recuerda: aunque a veces sientas que el cielo se cae a tu alrededor, no te rindas jamás, porque para cada día... hay un nuevo día."</p>
+        </div>
+
+        <div class="divider"></div>
+        <div class="firma">Da lo mejor</div>
+    </div>
 
 </body>
 </html>
