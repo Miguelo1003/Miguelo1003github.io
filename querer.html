@@ -37,16 +37,16 @@
 
         .contenido-texto {
             max-width: 580px;
-            background-color: transparent; /* Eliminado el fondo y el desenfoque */
+            background-color: transparent; 
             padding: 20px;
             margin-top: 20px;
+            margin-bottom: 60px; /* Espacio para que el texto no tape el botón al final */
         }
 
         h1 {
             color: #3d2624;
             margin-bottom: 25px;
             font-size: 3.2rem;
-            /* Sombra blanca para resaltar sobre el fondo nítido */
             text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;
         }
 
@@ -56,7 +56,6 @@
             line-height: 1.45;
             margin-bottom: 30px;
             font-weight: 700;
-            /* Contorno blanco reforzado para legibilidad máxima sin fondo */
             text-shadow: 1.5px 1.5px 0 #fff, -1.5px -1.5px 0 #fff, 1.5px -1.5px 0 #fff, -1.5px 1.5px 0 #fff, 0 0 10px #fff;
         }
 
@@ -67,33 +66,45 @@
             font-family: 'Special Elite', serif;
             color: #8b0000;
             font-size: 1.3rem;
-            /* Resaltado suave para el @ */
             text-shadow: 1px 1px 0 #fff;
         }
 
-        .boton-volver {
-            display: inline-block;
+        /* --- BOTÓN FLOTANTE SIEMPRE VISIBLE --- */
+        .boton-volver-flotante {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
             text-decoration: none;
             font-family: sans-serif;
             color: #ffffff !important;
             font-weight: bold;
             background-color: #8b0000; 
-            padding: 12px 35px;
+            padding: 12px 25px;
             border-radius: 50px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             font-size: 0.9rem;
+            z-index: 1000;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .boton-volver:hover {
+        .boton-volver-flotante:hover {
             background-color: #b30000;
-            transform: scale(1.05);
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
         }
 
         @media (max-width: 600px) {
             .contenido-texto { max-width: 100%; padding: 10px; }
             h1 { font-size: 2.5rem; }
             p { font-size: 1.35rem; }
+            .boton-volver-flotante {
+                bottom: 20px;
+                right: 20px;
+                padding: 10px 20px;
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
@@ -104,7 +115,7 @@
             <h1>Para Ti</h1>
             
             <p>
-                Okey no sé cómo comenzar, pero si estás leyendo esto es porque quieres saber que hay una persona que pase lo que pase siempre te va a tener un cariño impresionante. No solo por lo gran persona que fuiste con él, sino por todos los momentos de felicidad y todos los secretos. Recuerda que se sabe tantas cosas sobre ti que te sorprenderías.
+                siempre va a haber una persona que pase lo que pase siempre te va a tener un cariño impresionante. No solo por lo gran persona que fuiste con él, sino por todos los momentos de felicidad y todos los secretos. Recuerda que se sabe tantas cosas sobre ti que te sorprenderías.
                 <br><br>
                 Como puedes ver reflejado en el fondo, hay detalles sobre algunas cosas que pase lo que pase siempre se va a preguntar cada mañana: cómo amaneciste, si estás comiendo bien, cómo te sientes en este último año escolar... 
                 <br><br>
@@ -116,12 +127,10 @@
                 <br><br>
                 Te responderé, te diré que te quiero y que quiero que todo te salga muy bien en tu vida. Gracias por dejarme escuchar una vez más todo lo que eres tú.
             </p>
-            
-            <a href="index.html" class="boton-volver">← Volver</a>
         </div>
     </div>
 
-</body>
-</html>
+    <a href="index.html" class="boton-volver-flotante">← Inicio</a>
+
 </body>
 </html>
