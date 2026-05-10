@@ -8,13 +8,11 @@
         body {
             margin: 0;
             padding: 0;
-            /* Asegúrate de que el nombre coincida con tu imagen de fondo */
             background: url('Fondo-Graduacion.jpg') no-repeat center center fixed;
             background-size: cover;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow: hidden;
             display: flex;
-            /* Alineamos el contenido a la derecha */
             justify-content: flex-end; 
             align-items: center;
             height: 100vh;
@@ -44,7 +42,7 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
 
-        button {
+        .btn-principal {
             padding: 15px 40px;
             font-size: 18px;
             background-color: #2c3e50;
@@ -53,6 +51,33 @@
             border-radius: 50px;
             cursor: pointer;
             font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        .btn-principal:hover {
+            transform: scale(1.05);
+        }
+
+        /* BOTÓN VOLVER */
+        .btn-volver {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 25px;
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .btn-volver:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
         }
 
         .cap {
@@ -69,19 +94,18 @@
             100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
         }
 
-        /* TEXTO DESPLAZADO A LA DERECHA */
         #carta-container {
             display: none;
-            max-width: 400px; /* Un poco más estrecho para no invadir el centro */
+            max-width: 400px;
             background: transparent;
             padding: 40px;
-            margin-right: 5%; /* Espacio desde el borde derecho */
+            margin-right: 5%;
             animation: slideLeft 2s ease-out forwards;
             z-index: 5;
             position: relative;
             max-height: 85vh;
             overflow-y: auto;
-            text-align: right; /* Texto alineado a la derecha para estilo */
+            text-align: right;
         }
 
         #carta-container p {
@@ -124,7 +148,7 @@
     <div id="start-screen">
         <h3>¡Hola, Danna! 🎓</h3>
         <p>Prepara el volumen y presiona el botón</p>
-        <button onclick="comenzar()">Abrir Carta</button>
+        <button class="btn-principal" onclick="comenzar()">Abrir Carta</button>
     </div>
 
     <audio id="musica">
@@ -141,11 +165,11 @@
 
         <p>No sé qué decirte, creo que no existen palabras para lo orgulloso que me siento de ti. Vi todo lo que tuviste que pasar: tus trasnochadas, tus actuaciones, tus lloradas por los proyectos. Ya lo lograste.</p>
 
-        <p>¿Si viste? Siempre puedes cumplir lo que te propongas. De verdad espero que te vaya muy bien en este nuevo camino en el cual ya te vas a convertir en una "primípara", jajaja.</p>
+        <p>¿Si viste? Siempre puedes cumplir lo que te propongas. De verdad espero que te vaya muy bien en este nuevo camino.</p>
 
-        <p>Vas a descubrir nuevas cosas. Por favor, cuídate mucho. No pierdas esa parte de ti que hace lo que se propone y ese cariño que le das a las demás personas.</p>
-
-        <div class="firma">Orgulloso de ti,</div>
+        <div class="firma">Con mucho orgullo, Miguel</div>
+        
+        <a href="index.html" class="btn-volver">← Volver al inicio</a>
     </div>
 
     <script>
@@ -173,9 +197,5 @@
             }, 3500);
         }
     </script>
-</body>
-</html>
-    <a href="index.html" class="boton-volver">← Volver a las cartas</a>
-
 </body>
 </html>
