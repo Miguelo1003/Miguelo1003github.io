@@ -22,7 +22,6 @@
             justify-content: center;
         }
 
-        /* --- TÍTULO "PARA DANNA" --- */
         .titulo-superior {
             position: absolute;
             top: 22%; 
@@ -43,7 +42,10 @@
             cursor: pointer;
             perspective: 1200px;
             z-index: 20;
+            transition: transform 0.3s;
         }
+
+        .contenedor-regalo:active { transform: translateY(-50%) scale(0.95); }
 
         .caja-regalo {
             position: absolute;
@@ -73,6 +75,11 @@
             z-index: 30;
             transform-origin: top;
             transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Estado Abierto (Controlado por JS) */
+        .contenedor-regalo.abierto .tapa-regalo {
+            transform: rotateX(-115deg) translateY(-10px);
         }
 
         .mono {
@@ -112,50 +119,59 @@
             border-radius: 4px;
         }
 
-        /* --- CARTA CON EL MENSAJE DE LOS 17 --- */
+        /* --- CARTA --- */
         .carta {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) scale(0);
-            width: 90%;
-            max-width: 500px;
+            width: 85%;
+            max-width: 600px;
             z-index: 100;
             opacity: 0;
             font-family: 'Caveat', cursive;
-            transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             background: #fdf5e6;
-            padding: 35px;
-            border-radius: 5px;
-            box-shadow: 0 0 40px rgba(0,0,0,0.6);
-            max-height: 85vh;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            max-height: 80vh;
             overflow-y: auto;
             color: #2c1810;
+            cursor: pointer; /* Indicar que se puede cerrar al hacer click */
         }
 
-        .carta h2 {
-            font-size: 2.8rem;
-            margin-bottom: 20px;
-            color: #000;
-            text-align: center;
-        }
-
-        .carta p {
-            font-size: 1.5rem;
-            line-height: 1.4;
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        .contenedor-regalo:hover .tapa-regalo {
-            transform: rotateX(-115deg) translateY(-10px);
-        }
-
-        .contenedor-regalo:hover ~ .carta {
+        .carta.mostrar {
             opacity: 1;
             transform: translate(-50%, -50%) scale(1);
         }
 
+        .carta h2 { font-size: 3rem; margin-bottom: 25px; color: #000; text-align: center; }
+        .carta p { font-size: 1.6rem; line-height: 1.5; margin-bottom: 20px; text-align: left; }
+
+        /* --- BOTÓN SIEMPRE VISIBLE --- */
+        .btn-flotante-index {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 15px 25px;
+            background-color: #6a1b9a;
+            color: white;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: bold;
+            border-radius: 50px;
+            z-index: 110;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-flotante-index:hover { background-color: #8e24aa; transform: scale(1.1); }
+
+        /* Capa de fondo oscuro */
         .capa-oscurecimiento {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -165,16 +181,15 @@
             pointer-events: none;
         }
 
-        .contenedor-regalo:hover ~ .capa-oscurecimiento {
-            background: rgba(0, 0, 0, 0.75);
+        .capa-oscurecimiento.visible {
+            background: rgba(0, 0, 0, 0.8);
+            pointer-events: auto; /* Para poder cerrar haciendo clic fuera */
         }
 
         @media (max-width: 600px) {
             .titulo-superior { font-size: 2.2rem; top: 18%; }
-            .contenedor-regalo { width: 220px; height: 200px; top: 68%; }
-            .tapa-regalo { width: 240px; }
-            .carta { padding: 25px; width: 95%; }
-            .carta p { font-size: 1.25rem; }
+            .carta { padding: 25px; width: 92%; }
+            .carta p { font-size: 1.3rem; }
         }
     </style>
 </head>
@@ -182,7 +197,7 @@
 
     <div class="titulo-superior">Para:</div>
 
-    <div class="contenedor-regalo">
+    <div class="contenedor-regalo" id="regalo">
         <div class="etiqueta">
             DANNA<br>VERONICA<br>CICERI<br>DUARTE
         </div>
@@ -192,17 +207,43 @@
         <div class="caja-regalo"></div>
     </div>
 
-    <div class="capa-oscurecimiento"></div>
+    <div class="capa-oscurecimiento" id="overlay"></div>
     
-    <div class="carta">
+    <div class="carta" id="miCarta">
         <h2>¡Holaaaaa!</h2>
         <p>¿Cómo estás? ¡Feliz cumpleaños! ¿Qué se siente ya tener tus dulces 17? ¿Qué se siente saber que lograste sobrevivir a todo lo que ha pasado estos años?</p>
-        <p>Al final creo que sí me acordé de tu cumpleaños y, pues, como regalo —por raro que se escuche— es esta carta que estás leyendo y la página web. ¿Qué buen regalo, no?</p>
+        <p>Al final creo que sí me acordé de tu cumpleaños y, pues, como regalo es esta carta que estás leyendo y la página web. ¿Qué buen regalo, no?</p>
         <p>Hay una carta que está bloqueada hasta tu graduación; espero de verdad que te sirva para cada momento de este año.</p>
-        <p>Sé que no pude estar ahí para decirte: "Oye, feliz cumpleaños, ven te invito a algo de tomar en tu chiva rumbera". Espero que sí lo disfrutes; ojalá esté invitado a bailar toda la noche en esa chiva, pasar el día contigo y que sí lo goces, porque no hay cosa que más disfrutes que pasar tiempo de calidad con las personas.</p>
-        <p>Y, pues, obviamente recuerda que te queda un año para que ya seas mayor de edad, lista para tener esa libertad la cual siempre quisiste y anhelaste para poder vivir tu vida con alegría y amor.</p>
-        <p>Espero que se cumplan todas las cosas que deseas, que tengas unas comidas deliciosas, que los que te acompañen te hagan reír y que, de verdad, al final del día sientas que pudiste hacer todo lo que querías hacer.</p>
+        <p>Espero que sí lo disfrutes; ojalá esté invitado a bailar toda la noche en esa chiva, pasar el día contigo y que sí lo goces, porque no hay cosa que más disfrutes que pasar tiempo de calidad con las personas.</p>
+        <p>Y, pues, obviamente recuerda que te queda un año para que ya seas mayor de edad, lista para tener esa libertad la cual siempre quisiste y anhelaste.</p>
+        <p>Espero que se cumplan todas las cosas que deseas, que tengas unas comidas deliciosas y que, de verdad, al final del día sientas que pudiste hacer todo lo que querías hacer.</p>
+        <p style="text-align: center; font-size: 1rem; color: #888;">(Haz clic en la carta para cerrar)</p>
     </div>
+
+    <a href="index.html" class="btn-flotante-index">Volver al Inicio 🏠</a>
+
+    <script>
+        const regalo = document.getElementById('regalo');
+        const carta = document.getElementById('miCarta');
+        const overlay = document.getElementById('overlay');
+
+        // Función para abrir la carta
+        regalo.addEventListener('click', () => {
+            regalo.classList.add('abierto');
+            carta.classList.add('mostrar');
+            overlay.classList.add('visible');
+        });
+
+        // Función para cerrar la carta (haciendo clic en la carta o en el fondo oscuro)
+        function cerrar() {
+            regalo.classList.remove('abierto');
+            carta.classList.remove('mostrar');
+            overlay.classList.remove('visible');
+        }
+
+        carta.addEventListener('click', cerrar);
+        overlay.addEventListener('click', cerrar);
+    </script>
 
 </body>
 </html>
