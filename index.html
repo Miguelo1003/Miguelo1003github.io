@@ -7,145 +7,240 @@
     <style>
         :root {
             --insta-gradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            --rojo-regalo: #d32f2f;
+            --rojo-tapa: #f44336;
+            --dorado-moño: #ffd700;
+            --papel: #fdf5e6;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /* Usando tu imagen de fondo */
-            background-image: url('prueba.jpg'); 
+            background-image: url('fondo_completo_para_github.jpg'); 
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            
             color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            text-align: center;
-            box-sizing: border-box;
+            display: flex; flex-direction: column; align-items: center;
+            min-height: 100vh; margin: 0; overflow-x: hidden;
         }
 
-        /* Capa muy sutil para no oscurecer demasiado los girasoles */
         body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.3);
-            z-index: 0;
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); z-index: 0;
         }
 
-        h1, .grid-cartas, .instruccion, footer {
-            position: relative;
-            z-index: 1;
+        /* --- PASOS --- */
+        .paso {
+            display: none; width: 100%; flex-direction: column; align-items: center;
+            position: relative; z-index: 10; animation: fadeIn 0.8s ease forwards;
+        }
+        .activo { display: flex; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        h1 {
-            margin-top: 2rem;
-            margin-bottom: 2.5rem;
-            font-size: 2.5rem;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        /* --- PERGAMINO --- */
+        .contenedor-instrucciones {
+            background: var(--papel); color: #2c1810; padding: 35px;
+            margin: 40px 20px; border-radius: 4px; max-width: 650px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6); border: 1px solid #d7ccc8;
+            line-height: 1.6; text-align: left;
         }
 
+        .contenedor-instrucciones h3 {
+            margin-top: 0; color: #b71c1c; text-align: center;
+            font-family: 'Georgia', serif; border-bottom: 1px solid #d7ccc8;
+            padding-bottom: 10px; text-transform: uppercase;
+        }
+
+        .reglas-lista {
+            background: rgba(0,0,0,0.05); padding: 20px;
+            border-left: 4px solid #b71c1c; margin: 20px 0;
+            font-style: italic;
+        }
+
+        .btn-siguiente {
+            background: #b71c1c; color: white; border: none; padding: 15px 40px;
+            border-radius: 30px; font-weight: bold; cursor: pointer; 
+            margin-bottom: 50px; transition: 0.3s;
+        }
+
+        /* --- REGALO CON MOÑO --- */
+        .regalo-container {
+            position: relative; 
+            cursor: pointer; 
+            margin-top: 400px; /* AJUSTE: Mucho más abajo */
+            margin-bottom: 100px;
+        }
+
+        /* Ajuste para pantallas pequeñas para que no se pierda el regalo */
+        @media (max-height: 800px) {
+            .regalo-container { margin-top: 300px; }
+        }
+
+        .caja {
+            width: 150px; height: 130px; background: var(--rojo-regalo);
+            border-radius: 0 0 8px 8px; position: relative;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+        }
+
+        .tapa {
+            position: absolute; top: -25px; left: -10px;
+            width: 170px; height: 30px; background: var(--rojo-tapa);
+            border-radius: 5px; z-index: 12; transition: 0.8s ease-in-out;
+        }
+
+        .moño-completo { position: absolute; top: 0; left: 0; width: 100%; transition: 0.8s ease-in-out; }
+
+        .moño-lazo {
+            position: absolute; top: -55px; left: 50%;
+            transform: translateX(-50%); width: 40px; height: 20px;
+            z-index: 15;
+        }
+
+        .moño-lazo::before, .moño-lazo::after {
+            content: ""; position: absolute; width: 45px; height: 45px;
+            border: 10px solid var(--dorado-moño); border-radius: 50% 50% 0 50%;
+            top: -20px;
+        }
+
+        .moño-lazo::before { transform: rotate(45deg); left: -40px; }
+        .moño-lazo::after { transform: rotate(135deg) scaleX(-1); right: -40px; }
+
+        .nudo {
+            position: absolute; top: -45px; left: 50%; transform: translateX(-50%);
+            width: 30px; height: 30px; background: var(--dorado-moño);
+            border-radius: 50%; z-index: 16;
+        }
+
+        .etiqueta {
+            position: absolute; top: 40px; right: -110px;
+            background: #fff; color: #333; padding: 10px;
+            font-size: 0.7rem; font-weight: bold; transform: rotate(10deg);
+            border-left: 12px solid #e0cda9; width: 120px;
+        }
+
+        /* --- GRID CARTAS --- */
         .grid-cartas {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 25px;
-            width: 100%;
-            max-width: 1000px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px; width: 90%; max-width: 1000px; margin: 40px auto;
         }
 
         .opcion {
-            /* Fondo más transparente (0.05) para que se vea el fondo */
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(5px); /* Menos desenfoque para ver mejor lo de atrás */
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 20px;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 60px;
+            background: var(--papel); color: #4e342e; padding: 50px 20px 30px 20px;
+            border-radius: 4px; text-decoration: none; font-weight: bold;
+            text-align: center; position: relative; border: 1px solid #d7ccc8;
+            transition: 0.3s;
         }
 
-        .opcion:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+        .opcion::before {
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 35px;
+            background: #efebe9; clip-path: polygon(0 0, 50% 100%, 100% 0);
         }
 
-        /* Bordes de colores delgados */
-        .btn-graduacion { border-bottom: 3px solid #ffd700; } 
-        .btn-mal { border-bottom: 3px solid #3498db; }        
-        .btn-cumple { border-bottom: 3px solid #e91e63; }      
-        .btn-sola { border-bottom: 3px solid #9b59b6; }       
-        .btn-duda { border-bottom: 3px solid #1abc9c; } 
-        .btn-querer { border-bottom: 3px solid #f1c40f; }      
+        .opcion:hover { transform: translateY(-10px); background: #fff; }
 
-        .instruccion {
-            margin-top: 3rem;
-            font-size: 0.9rem;
-            font-style: italic;
-            opacity: 0.8;
-        }
+        .opcion:nth-child(1) { border-top: 5px solid #ff0000; } 
+        .opcion:nth-child(2) { border-top: 5px solid #3498db; } 
+        .opcion:nth-child(3) { border-top: 5px solid #4600c0; } 
+        .opcion:nth-child(4) { border-top: 5px solid #007625; } 
+        .opcion:nth-child(5) { border-top: 5px solid #e7d400; } 
+        .opcion:nth-child(6) { border-top: 5px solid #890000; } 
 
-        /* Footer al final de la página */
-        footer {
-            margin-top: auto; /* Empuja el footer al fondo */
-            padding: 40px 20px;
-        }
-
+        footer { padding: 40px; z-index: 10; position: relative; }
         .insta-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--insta-gradient);
-            padding: 10px 20px;
-            border-radius: 30px;
-            color: white;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: bold;
-            transition: transform 0.3s ease;
-        }
-
-        .insta-link:hover {
-            transform: scale(1.05);
+            display: inline-flex; align-items: center; gap: 10px;
+            background: var(--insta-gradient); padding: 12px 25px;
+            border-radius: 30px; color: white; text-decoration: none; font-weight: bold;
         }
     </style>
 </head>
-<body>
+<body id="mainBody">
 
-    <h1>Para esos momentos especiales</h1>
-    
-    <div class="grid-cartas">
-        <a href="graduacion.html" class="opcion btn-graduacion">🎓 1. Para tu graduación</a>
-        <a href="mal.html" class="opcion btn-mal">💙 2. Cuando te sientas mal</a>
-        <a href="cumple.html" class="opcion btn-cumple">🎂 3. Feliz Cumpleaños</a>
-        <a href="sola.html" class="opcion btn-sola">🌙 4. Cuando te sientas sola</a>
-        <a href="duda.html" class="opcion btn-duda">✨ 5. Cuando dudes de tu fuerza</a>
-        <a href="querer.html" class="opcion btn-querer">❤️ 6. Cuánto te quiero</a>
+    <!-- PASO 1 -->
+    <div class="paso" id="paso1">
+        <div class="contenedor-instrucciones">
+            <h3>Introducción</h3>
+            <p>Hola, yo sé que esto debe tomarte por sorpresa, si soy sincer@ a mi también. En realidad no es que haya planeado esto con mucha anterioridad, a veces la vida es de corazonadas; cuando noté que tu cumpleaños estaba lo suficientemente cerca, me di cuenta que no quiero volver a pasar ese día por alto.</p>
+            <p>Cuando pienso en qué regalar por un cumpleaños hay demasiadas opciones, contigo incluso la luna estaba entre ellas, aunque debía ser realista. En primera, y espero lo hayas notado, no quiero que sepas quién soy; en segunda, quería darte algo que te acompañe siempre, que puedas recordar y que, cuando sientas que no puedes lidiar con todo sola, sepas que están mis palabras listas para hacerte todo más fácil.</p>
+            <p>La dinámica es muy sencilla: escribí 6 cartas (pudieron ser 9 lo sé), cada una para una situación en particular. Sé que las palabras muchas veces van a quedarse cortas para lo mucho que me gustaría apoyarte, pero es mi mejor intento por y para ti. Entonces cuando sientas que quieras leerlas van a estar ahí para ti. Además, la cuenta que creé en Instagram va a quedar para ti hasta el 9 de enero, aunque con ciertas reglas:</p>
+            <div class="reglas-lista">
+                • No te voy decir quién soy, sin importar cuánto preguntes.<br><br>
+                • No voy a contarte nada de mí y solo voy a estar para escucharte cuando sientas que las cartas no son suficientes y necesites a alguien.<br><br>
+                • Va a estar hasta el 9 de enero porque sé que quitarte más tiempo sería egoísta, más aún sabiendo que pronto vas a graduarte y va a empezar tu vida de verdad.
+            </div>
+            <p>Hay una carta que está bloqueada hasta tu graduación; espero de verdad que te sirva para cada momento de este año.</p>
+        </div>
+        <button class="btn-siguiente" onclick="irAlRegalo()">Entiendo, continuar →</button>
     </div>
 
-    <p class="instruccion">Haz clic en la carta que desees abrir.</p>
+    <!-- PASO 2 -->
+    <div class="paso" id="paso2">
+        <h2 style="margin-top: 50px; text-shadow: 2px 2px 10px black; text-align: center;">Tienes un nuevo paquete</h2>
+        <div class="regalo-container" onclick="abrirCartas()">
+            <div id="moñoEfecto" class="moño-completo">
+                <div class="moño-lazo"></div>
+                <div class="nudo"></div>
+            </div>
+            <div class="tapa" id="tapaRegalo"></div>
+            <div class="caja">
+                <div class="etiqueta">Para:<br>Danna Veronica Ciceri Duarte</div>
+            </div>
+        </div>
+        <p style="font-style: italic;">(Toca el regalo para abrirlo)</p>
+    </div>
+
+    <!-- PASO 3 -->
+    <div class="paso" id="paso3">
+        <h2 style="margin-top: 30px; text-shadow: 2px 2px 10px black;">Tus Cartas</h2>
+        <div class="grid-cartas">
+            <a href="cumple.html" class="opcion">🎂 Feliz Cumpleaños</a>
+            <a href="mal.html" class="opcion">💙 Cuando te sientas mal</a>
+            <a href="sola.html" class="opcion">🌙 Cuando te sientas sola</a>
+            <a href="querer.html" class="opcion">❤️ Cuánto te quiero</a>
+            <a href="duda.html" class="opcion">✨ Cuando dudes de tu fuerza</a>
+            <a href="graduacion.html" class="opcion">🎓 Para tu graduación</a>
+        </div>
+    </div>
 
     <footer>
-        <p style="margin-bottom: 10px; font-size: 0.8rem; opacity: 0.7;">¿Quieres decirme algo?</p>
-        <a href="https://instagram.com/sofia_caro_5535" target="_blank" class="insta-link">
-            📸 Instagram
-        </a>
+        <a href="https://instagram.com/sofia_caro_5535" target="_blank" class="insta-link">📸 Instagram</a>
     </footer>
 
+    <script>
+        window.onload = function() {
+            const yaLeido = sessionStorage.getItem('vistoEnSesion');
+            if (yaLeido) {
+                document.getElementById('paso3').classList.add('activo');
+            } else {
+                document.getElementById('paso1').classList.add('activo');
+            }
+        };
+
+        function irAlRegalo() {
+            document.getElementById('paso1').classList.remove('activo');
+            document.getElementById('paso2').classList.add('activo');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function abrirCartas() {
+            const tapa = document.getElementById('tapaRegalo');
+            const moño = document.getElementById('moñoEfecto');
+            
+            tapa.style.transform = "translateY(-250px) rotate(-15deg)";
+            moño.style.transform = "translateY(-300px) rotate(10deg)";
+            tapa.style.opacity = "0";
+            moño.style.opacity = "0";
+
+            setTimeout(() => {
+                sessionStorage.setItem('vistoEnSesion', 'true');
+                document.getElementById('paso2').classList.remove('activo');
+                document.getElementById('paso3').classList.add('activo');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 800);
+        }
+    </script>
 </body>
 </html>
