@@ -11,7 +11,7 @@
         }
 
         body, html {
-            height: 100%;
+            min-height: 100%; 
             margin: 0;
             padding: 0;
             background-image: url('fondo-mal.jpg'); 
@@ -20,85 +20,103 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
             display: flex;
-            align-items: center;
+            flex-direction: column;
         }
 
-        /* Degradado lateral para suavizar la zona de lectura sin tapar la imagen */
+        /* Degradado oscuro lateral */
         .contenedor-lectura {
             width: 100%;
-            height: 100%;
+            min-height: 100vh; 
             background: linear-gradient(to right, 
-                rgba(255,255,255,0.7) 0%, 
-                rgba(255,255,255,0.3) 45%, 
+                rgba(20, 10, 35, 0.88) 0%, 
+                rgba(20, 10, 35, 0.65) 50%, 
                 transparent 100%);
             display: flex;
             align-items: center;
-            padding-left: 4%;
+            padding-left: 5%;
+            padding-top: 40px;   
+            padding-bottom: 80px; /* Más espacio abajo para evitar choque con el botón en móviles */
         }
 
         .texto-carta {
-            max-width: 520px;
+            max-width: 540px;
             font-family: 'Caveat', cursive;
-            color: #1a0633; 
-            /* Borde blanco sólido para que la letra resalte en cualquier parte del fondo */
+            color: #ffffff; 
             text-shadow: 
-                2px 2px 0px #fff, 
-               -2px -2px 0px #fff, 
-                2px -2px 0px #fff, 
-               -2px  2px 0px #fff,
-                0px  0px 12px rgba(255,255,255,1);
+                1px 1px 2px rgba(0, 0, 0, 0.8),
+                0px 0px 8px rgba(0, 0, 0, 0.5);
         }
 
         h2 {
-            font-size: 3.2rem;
-            margin: 0 0 10px 0;
-            color: #311b92;
+            font-size: 3.4rem;
+            margin: 0 0 15px 0;
+            color: #e1bee7; 
             line-height: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
         }
 
         .mensaje-principal {
-            font-size: 1.55rem;
-            line-height: 1.2;
+            font-size: 1.65rem; 
+            line-height: 1.3;
             font-weight: 700;
         }
 
         p {
-            margin-bottom: 12px;
+            margin-top: 0;
+            margin-bottom: 18px;
         }
 
         .resaltado {
-            color: #512da8;
+            color: #03b2bb;
             font-weight: 700;
+            text-shadow: 0px 0px 5px rgba(255, 213, 79, 0.3);
         }
 
+        /* BOTÓN VOLVER - POSICIONADO A LA DERECHA DE LA PÁGINA */
         .boton-volver {
-            margin-top: 10px;
+            position: fixed; /* Lo deja fijo en la pantalla aunque hagas scroll */
+            bottom: 40px;    /* Distancia desde abajo */
+            right: 40px;     /* Distancia desde la derecha de la página */
             text-decoration: none;
             color: white;
             font-family: sans-serif;
             font-weight: bold;
-            font-size: 0.8rem;
-            background: #311b92;
-            padding: 10px 25px;
+            font-size: 0.85rem;
+            background: #6a1b9a;
+            padding: 12px 30px;
             border-radius: 50px;
             display: inline-block;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
             text-shadow: none;
+            transition: 0.3s;
+            z-index: 1000; /* Asegura que siempre esté por encima de todo */
         }
 
         .boton-volver:hover {
-            background: #512da8;
+            background: #8e24aa;
             transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.6);
         }
 
         @media (max-width: 768px) {
             .contenedor-lectura {
-                padding-left: 15px;
-                background: rgba(255,255,255,0.8);
+                padding: 40px 20px;
+                background: linear-gradient(to bottom, 
+                    rgba(15, 5, 25, 0.95) 0%, 
+                    rgba(15, 5, 25, 0.85) 100%); 
             }
-            .texto-carta { max-width: 100%; padding-right: 15px; }
-            h2 { font-size: 2.5rem; }
-            .mensaje-principal { font-size: 1.3rem; }
+            .texto-carta { 
+                max-width: 100%; 
+            }
+            h2 { font-size: 3rem; }
+            .mensaje-principal { font-size: 1.45rem; }
+            
+            /* Ajuste para que el botón no tape texto en móviles pequeños */
+            .boton-volver {
+                bottom: 20px;
+                right: 20px;
+                padding: 10px 20px;
+            }
         }
     </style>
 </head>
@@ -106,21 +124,46 @@
 
     <div class="contenedor-lectura">
         <div class="texto-carta">
-            <h2>Hola, te escucho.</h2>
+            <h2>Hola…</h2>
             <div class="mensaje-principal">
-                <p>¿Qué pasó esta vez? ¿Quieres comer esas gomitas de tirita? Dime por qué ahora no te sientes como la mujer más poderosa del mundo.</p>
+                <p>Ven, cuéntame qué pasó esta vez, piensa que estoy junto a ti escuchándote.</p>
                 
-                <p>Te estás volviendo a preocupar demasiado, ¿cierto? Recuerda que hay muchas cosas que no puedes controlar; sientes que todo es tu culpa, pero no es así. Cada vez que piensas que no eres lo suficientemente fuerte, demuestras que tienes una <span class="resaltado">convicción indomable</span>.</p>
+                <p>¿Fue uno de esos días en los que todo pesa demasiado? ¿De esos momentos donde sientes que el mundo va demasiado rápido y tú apenas estás intentando mantenerte en pie? Está bien sentirte así. No tienes que fingir que todo está perfecto todo el tiempo.</p>
                 
-                <p>Cuando actúas, cambias esa actitud tímida por una postura de confianza y determinación; te has convertido en la mejor versión de ti misma. Esa chica de 1.60 que es tan imponente que parece de 1.80, con una sonrisa que motiva a cualquiera a seguir adelante.</p>
+                <p>Tal vez ahorita solo necesitas acostarte un rato, llorar un poco, comer esas gomitas de tirita que tanto te gustan o simplemente quedarte en silencio sin pensar en nada. Y aunque ahora mismo no te sientas como la mujer más poderosa del mundo, eso no significa que hayas dejado de serlo.</p>
                 
-                <p>¿O el problema es que te están presionando otra vez tus papás? Recuerda que estás dando lo mejor de ti. Sé que quieres que todo salga perfecto, pero también <span class="resaltado">mereces descansar</span>, ver una peli o tomar una siesta. No importa si te trasnochas o si dejas de comer por querer dejar todo hecho; eso no está bien. Tienes que recuperarte, dormir y disfrutar. Esas pequeñas cosas son las que hacen que la vida sea linda.</p>
+                <p>Te conozco lo suficiente para saber que eres muy dura contigo misma. Te preocupas demasiado por cosas que no puedes controlar, cargas responsabilidades que no deberían recaer sólo sobre ti y, aun así, sigues intentando que todo salga bien para todos. Pero escucha esto con atención: <span class="resaltado">no todo es tu culpa</span>. Nunca lo ha sido. Eres maravillosa.</p>
                 
-                <p>Espero que esto te dé fuerzas para no rendirte y simplemente digas: <span class="resaltado">'Yo puedo'</span>. Porque tú puedes con todo. Y recuerda: cuando sientas que no puedes más, aquí voy a estar para darte ánimos, <span class="resaltado">Covey</span>.</p>
+                <p>A veces olvidas lo fuerte que eres porque te acostumbras a sobrevivir. Pero cada vez que crees que ya no puedes más, encuentras la manera de levantarte otra vez. Y eso no lo hace cualquiera.</p>
+                
+                <p>Tienes una <span class="resaltado">fuerza muy rara de encontrar</span>. De esas que no necesitan hacer ruido para ser enormes.</p>
+                
+                <p>Porque sí, tal vez mides 1.60, pero tu presencia llena cualquier lugar al que llegas. Tienes esa mirada decidida y hermosa, esa sonrisa capaz de darle calma a otros incluso cuando tú también la necesitas. Hay algo en ti que inspira, aunque muchas veces no te des cuenta.</p>
+                
+                <p>Y si el problema vuelve a ser la presión, las expectativas o ese miedo constante de no estar haciendo suficiente… respira. Estás haciendo lo mejor que puedes con todo lo que llevas encima. No tienes que demostrarle nada a nadie todo el tiempo.</p>
+                
+                <p><span class="resaltado">Descansar no te hace débil.</span><br>Dormir no significa rendirte.<br>Tomarte un momento para ver una película, escuchar música, comer algo rico o simplemente desconectarte un rato también es parte de vivir.</p>
+                
+                <p>No puedes seguir intentando salvarlo todo mientras te descuidas a ti misma.</p>
+                
+                <p>Quiero que recuerdes algo importante: la vida no se trata solo de cumplir, estudiar, responder, correr o aguantar. También se trata de esos pequeños momentos que parecen simples, pero terminan salvándonos sin que nos demos cuenta. Las risas inesperadas, como la tuya que sigue siendo una de mis favoritas, una canción favorita, una conversación tranquila, una siesta después de un día pesado, una comida que te gusta, un abrazo sincero… <span class="resaltado">ahí también vive la felicidad</span>.</p>
+                
+                <p>Y aunque hoy todo parezca difícil, esto también va a pasar.</p>
+                
+                <p>Así que, por favor, no te rindas ahora.</p>
+                
+                <p>Porque sí puedes. <span class="resaltado">Siempre has podido.</span></p>
+                
+                <p>Y cuando vuelvas a sentir que el cansancio te gana, que las dudas pesan demasiado o que ya no sabes cómo seguir… recuerda que nunca estás completamente sola. Siempre va a existir alguien dispuesto a recordarte lo valiosa, fuerte e increíble que eres, incluso en los días donde tú no logras verlo.</p>
+                
+                <p>Mañana probablemente volverás a levantarte con esa fuerza que tanto te caracteriza. Pero por hoy, solo descansa un poco. Tú también mereces cuidado, paciencia y amor.</p>
+                
+                <p>Y no lo olvides: incluso en tus peores días, sigues siendo una persona increíble.</p>
             </div>
-            <a href="index.html" class="boton-volver">VOLVER ←</a>
         </div>
     </div>
+
+    <a href="index.html" class="boton-volver">← Volver a las cartas</a>
 
 </body>
 </html>
