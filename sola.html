@@ -22,7 +22,6 @@
         .contenedor-lectura {
             width: 100%;
             min-height: 100vh;
-            /* Degradado ajustado para móviles: de arriba a abajo en pantallas pequeñas */
             background: linear-gradient(to bottom, 
                 rgba(0,0,0,0.6) 0%, 
                 rgba(0,0,0,0.3) 100%);
@@ -32,7 +31,6 @@
             overflow-y: auto;
         }
 
-        /* En escritorio mantenemos el degradado lateral */
         @media (min-width: 768px) {
             .contenedor-lectura {
                 background: linear-gradient(to right, 
@@ -73,7 +71,15 @@
             gap: 8px;
         }
 
-        .boton-volver { background: #ec1568; }
+        /* ESTILO DEL BOTÓN VOLVER (FIJO A LA DERECHA DE LA PÁGINA) */
+        .boton-volver { 
+            background: #ec1568; 
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            z-index: 90; /* Por debajo del modal (100) pero encima del fondo */
+        }
+        
         .boton-juego { background: #311b92; }
         .boton-dibujo { background: #009688; }
         .boton:hover { transform: translateY(-3px); opacity: 0.9; }
@@ -101,6 +107,14 @@
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
+        }
+
+        /* Botón cerrar dentro de los modales (sin afectar el botón fijo de la página) */
+        .boton-cerrar-modal {
+            background: #ec1568;
+            margin-top: 20px; 
+            width: 100%; 
+            justify-content: center;
         }
 
         /* --- ESTILOS SOPA DE LETRAS --- */
@@ -135,34 +149,78 @@
             cursor: crosshair;
             margin: 10px 0;
             touch-action: none;
-            width: 100%; /* Adaptable */
+            width: 100%; 
             height: auto;
         }
 
         .controles-dibujo { display: flex; justify-content: center; gap: 15px; margin-bottom: 10px; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 768px) {
+            /* Ajuste del botón en móviles para que no estorbe tanto */
+            .boton-volver {
+                bottom: 20px;
+                right: 20px;
+                padding: 10px 18px;
+            }
+        }
     </style>
 </head>
 <body>
 
     <div class="contenedor-lectura">
         <div class="texto-carta">
-            <h2>Hola, te escucho.</h2>
+            <h2>Hola…</h2>
             <div class="mensaje-principal">
-                <p>Holaa, paso por aquí porque quiero que me cuentes un poquito de tu día. ¿Cómo te fue hoy? ¿Qué hiciste en clase o en el descanso? ¿Qué tal estuvo la comida? Pero, más allá de la rutina, ¿cómo te sientes tú?</p>
-                <p>Si quieres hablar, que alguien te escuche, o si prefieres distraerte pintando o saliendo a caminar, cuenta conmigo. Sabes que voy a estar acá para que, cuando te sientas sola, solo tengas que responder y recordar que tienes a alguien que te apoya.</p>
-                <p>Admiro mucho cómo has manejado todo el proceso de tu lesión. Sé que fue frustrante sentirte débil, pero eres valiente por no dejarte afectar por quienes no entienden lo que viviste.</p>
-                <p>No tienes que cargar con todo sola ni demostrarle nada a nadie. Para mí, tu fuerza no está en no llorar, sino en seguir adelante después de hacerlo. Aquí estoy para escucharte siempre que necesites soltar todo eso que llevas dentro.</p>
+                <p>Te escucho.</p>
+                
+                <p>Sé que hay días en los que la soledad pesa más de lo normal. Días donde, aunque estés rodeada de personas, sientes que nadie realmente nota todo lo que pasa por tu cabeza. Y justo por eso quería pasar por aquí: para recordarte que no estás tan sola como a veces crees.</p>
+                
+                <p>Cuéntame, ¿cómo estuvo tu día hoy?<br>
+                ¿Qué hiciste en clase?<br>
+                ¿Te reíste en el descanso o fue uno de esos días largos donde solo querías llegar a casa?<br>
+                ¿Cómo estuvo la comida?<br>
+                ¿Escuchaste alguna canción que te gustara?<br>
+                ¿Pasó algo que te hizo feliz aunque fuera por un ratito?</p>
+                
+                <p>Pero más allá de todo eso… ¿cómo estás tú realmente?</p>
+                
+                <p>Porque muchas veces respondes “bien” aunque tengas mil cosas guardadas. Y no deberías sentir que tienes que cargar con todo en silencio.</p>
+                
+                <p>Si quieres hablar, desahogarte o simplemente sentir que alguien te escucha de verdad, aquí tienes un espacio seguro. Y si no quieres hablar también está bien. Podemos simplemente existir un rato: pintar, caminar, distraernos viendo algo tonto o quedarnos en silencio sin que eso se sientas incómodo.</p>
+                
+                <p>Quiero que recuerdes algo importante: tu compañía vale muchísimo. Aunque a veces tu mente te haga sentir invisible o insuficiente, hay personas que genuinamente agradecen que existas, que sonrías, que aparezcas en sus días, incluso cuando tú no lo notas, porque no sabes lo que haría yo por verte tan solo una vez más, solo una (como la canción de Morat).</p>
+                
+                <p>Y hablando de todo lo que has vivido… admiro muchísimo la forma en que enfrentaste lo de tu lesión. Sé que hubo momentos donde te sentiste limitada, frustrada o incluso rota por dentro. Sé que dolió sentirte débil, sentir que no podías hacer las cosas como antes o escuchar comentarios de personas que jamás entendieron realmente lo que estabas viviendo.</p>
+                
+                <p>Pero aun así seguiste adelante. Y eso requiere muchísimo valor.</p>
+                
+                <p>Porque ser fuerte no significa nunca caer. Ser fuerte significa levantarte incluso después de sentirte derrotada. Significa seguir intentando aunque tengas miedo. Significa permitirte llorar y aun así continuar.</p>
+                
+                <p>No tienes que demostrarle nada a nadie. No tienes que fingir que todo está perfecto. No tienes que convertirte en alguien “más fuerte” para merecer apoyo, cariño o comprensión.</p>
+                
+                <p>A veces está bien sentirse cansada. A veces está bien admitir que necesitas a alguien.</p>
+                
+                <p>Y cuando vuelvas a sentir ese vacío raro, esa sensación de soledad que aparece de repente aunque todo parezca normal, quiero que recuerdes esto:siempre habrá alguien dispuesto a escucharte, a quedarse y a recordarte lo valiosa que eres incluso en tus días más difíciles.</p>
+                
+                <p>No estás sola en esto. Nunca lo has estado del todo.</p>
+                
+                <p>Y aunque ahora mismo quizás no lo notes, tienes una luz muy bonita dentro de ti. Una de esas luces que, incluso cuando se sienten apagadas, siguen siendo capaces de darle calidez a otras personas.</p>
+                
+                <p>Así que, por favor, sé un poquito más amable contigo. Abrázate más. Descansa más. Permítete sentir.</p>
+                
+                <p>Y cuando necesites soltar todo eso que llevas guardado, aquí siempre habrá un lugar para ti.</p>
             </div>
             
             <div class="botones-container">
-                <a href="index.html" class="boton boton-volver">VOLVER ←</a>
                 <button onclick="abrirModal('modalJuego')" class="boton boton-juego">SOPA DE LETRAS 🧩</button>
                 <button onclick="abrirModal('modalDibujo')" class="boton boton-dibujo">DIBUJA ALGO 🎨</button>
             </div>
         </div>
     </div>
+
+    <a href="index.html" class="boton boton-volver">← Volver a las cartas</a>
 
     <!-- MODAL JUEGO -->
     <div id="modalJuego" class="modal">
@@ -171,7 +229,7 @@
             <p style="font-size: 0.75rem; margin-bottom: 10px;">Toca la primera y última letra:</p>
             <div id="sopa-grid"></div>
             <div class="lista-palabras" id="lista-palabras"></div>
-            <button onclick="cerrarModal('modalJuego')" class="boton boton-volver" style="margin-top:20px; width: 100%; justify-content:center;">CERRAR</button>
+            <button onclick="cerrarModal('modalJuego')" class="boton boton-cerrar-modal">CERRAR</button>
         </div>
     </div>
 
@@ -184,7 +242,7 @@
                 <input type="color" id="color-picker" value="#311b92" style="width:40px; height:40px;">
                 <button onclick="limpiarLienzo()" class="boton" style="background: #757575;">BORRAR</button>
             </div>
-            <button onclick="cerrarModal('modalDibujo')" class="boton boton-volver" style="width: 100%; justify-content:center;">CERRAR</button>
+            <button onclick="cerrarModal('modalDibujo')" class="boton boton-cerrar-modal">CERRAR</button>
         </div>
     </div>
 
