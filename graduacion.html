@@ -103,7 +103,7 @@
             animation: slideLeft 2s ease-out forwards;
             z-index: 5;
             position: relative;
-            max-height: 85vh;
+            max-height: 80vh;
             overflow-y: auto;
             text-align: right;
         }
@@ -133,6 +133,52 @@
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
         }
 
+        /* --- CONTROL DE VOLUMEN (AHORA A LA IZQUIERDA) --- */
+        #volume-control {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            left: 5%;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 20;
+            align-items: center;
+            gap: 10px;
+            animation: fadeIn 2s ease;
+        }
+
+        #volume-control label {
+            color: white;
+            font-size: 18px;
+        }
+
+        #volume-slider {
+            -webkit-appearance: none;
+            width: 100px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        #volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 12px;
+            height: 12px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         @keyframes slideLeft {
             from { opacity: 0; transform: translateX(50px); }
             to { opacity: 1; transform: translateX(0); }
@@ -151,33 +197,84 @@
         <button class="btn-principal" onclick="comenzar()">Abrir Carta</button>
     </div>
 
-    <audio id="musica">
+    <audio id="musica" loop>
         <source src="Fondo.mp3" type="audio/mpeg">
     </audio>
 
     <div id="carta-container">
-        <h2>¡Felicidades, Graduada! 🎓</h2>
-        <p>¡Holaaaaa! Ya te graduaste, ¡aaaa! Me siento súper orgulloso. Sé que no pude estar presente en esa entrega de diploma, pero wow, o sea, ¡ya te graduaste!</p>
+        <h2>¡Felicidades, graduada! 🎓✨</h2>
         
-        <p>Después de tanto esfuerzo, de tantos trabajos y del ICFES, demostraste que de verdad lo lograste. Me siento muy feliz por ti porque ya superaste esta primera etapa de tu vida.</p>
-
-        <p>Espero que disfrutes mucho tu viaje de grado; no hay mejor sentimiento que estar con tus amigos porque salen con unas locuras y es un ambiente demasiado exótico.</p>
-
-        <p>No sé qué decirte, creo que no existen palabras para lo orgulloso que me siento de ti. Vi todo lo que tuviste que pasar: tus trasnochadas, tus actuaciones, tus lloradas por los proyectos. Ya lo lograste.</p>
-
-        <p>¿Si viste? Siempre puedes cumplir lo que te propongas. De verdad espero que te vaya muy bien en este nuevo camino.</p>
-
-        <div class="firma">Orgullo Siempre De Ti.</div>
+        <p>¡Holaaaaa!<br>
+        Bueno… oficialmente lo lograste. Sí, así como lo lees: ya te graduaste. Y aunque quizás todavía no dimensionas todo lo que significa este momento, quiero que te detengas un segundo y entiendas algo muy importante:</p>
         
-        <a href="index.html" class="btn-volver">← Volver al inicio</a>
+        <p>Terminaste una de las etapas más importantes de tu vida.</p>
+        
+        <p>Después de tantos días pesados, trabajos interminables, estrés, exposiciones, proyectos, trasnochadas, nervios por el ICFES y momentos donde sentías que no podías más… aquí estás. Con un diploma que representa muchísimo más que solo notas o años de estudio. Representa todo tu esfuerzo, tu disciplina y todas las veces que seguiste adelante incluso cuando estabas cansada.</p>
+        
+        <p>Y honestamente… qué orgullo tan grande.</p>
+        
+        <p>Tal vez no pude estar ahí viendo el momento exacto en que recibiste tu diploma, pero aun así no imaginas lo feliz que me hace saber que llegaste hasta este punto. Porque vi —aunque quizás tú no lo notes— todo lo que tuviste que pasar para conseguirlo.</p>
+        
+        <p>Vi tus preocupaciones antes de entregar proyectos.<br>
+        Tus noches sin dormir intentando terminar todo.<br>
+        Tus momentos de estrés.<br>
+        Tus dudas.<br>
+        Tus lloradas silenciosas cuando sentías demasiada presión.<br>
+        Y también vi cómo, aun con todo eso encima, nunca dejaste de intentarlo.</p>
+        
+        <p>Por eso este logro vale tanto.</p>
+        
+        <p>Porque no fue suerte.<br>
+        Fue constancia.<br>
+        Fue valentía.<br>
+        Fue seguir adelante incluso en los días donde querías rendirte.</p>
+        
+        <p>Y mírate ahora… graduada.</p>
+        
+        <p>Qué increíble suena eso, ¿no?</p>
+        
+        <p>Espero de verdad que disfrutes muchísimo tu viaje de grado. Que te rías hasta que te duela el estómago, que tomes demasiadas fotos, que bailes, que hagas locuras con tus amigos y que guardes recuerdos que algún día te hagan sonreír cuando los vuelvas a pensar.</p>
+        
+        <p>Porque esos momentos quedan para siempre.</p>
+        
+        <p>Y aunque ahora quizás tengas miedo por lo que viene después —la universidad, el futuro, las decisiones, crecer— quiero que recuerdes algo: ya demostraste que eres capaz de muchísimo más de lo que imaginas.</p>
+        
+        <p>Todo eso que antes parecía imposible… lo terminaste logrando.</p>
+        
+        <p>Así que nunca vuelvas a subestimar tu fuerza.</p>
+        
+        <p>Este apenas es el comienzo de una nueva etapa. Una donde vas a descubrir muchas cosas sobre ti misma, donde seguramente tendrás nuevos retos, nuevas metas y también nuevos sueños. Y sinceramente, no tengo dudas de que vas a lograr cosas increíbles.</p>
+        
+        <p>Porque si algo quedó claro después de todo este tiempo, es que cuando realmente te propones algo, eres imparable.</p>
+        
+        <p>Así que hoy celebra muchísimo.<br>
+        Celebra todo lo que creciste.<br>
+        Todo lo que aprendiste.<br>
+        Todo lo que sobreviviste.<br>
+        Y todo lo que viene ahora.</p>
+        
+        <div class="firma">Orgull@ siempre de ti.<br>Siempre. ✨</div>
+        
+        <a href="index.html" class="btn-volver">← Volver a las cartas</a>
+    </div>
+
+    <!-- Barra de Volumen (Lado Izquierdo) -->
+    <div id="volume-control">
+        <label for="volume-slider">🔊</label>
+        <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.6">
     </div>
 
     <script>
+        const audio = document.getElementById('musica');
+        const slider = document.getElementById('volume-slider');
+
         function comenzar() {
             document.getElementById('start-screen').style.display = 'none';
-            const audio = document.getElementById('musica');
-            audio.volume = 0.6;
+            audio.volume = slider.value;
             audio.play().catch(e => console.log("Audio no cargado"));
+
+            // Mostrar la barra de volumen junto con la carta
+            document.getElementById('volume-control').style.display = 'flex';
 
             for (let i = 0; i < 35; i++) {
                 setTimeout(() => {
@@ -196,6 +293,11 @@
                 carta.style.display = 'block';
             }, 3500);
         }
+
+        // Listener para cambiar el volumen en tiempo real
+        slider.addEventListener('input', (e) => {
+            audio.volume = e.target.value;
+        });
     </script>
 </body>
 </html>
